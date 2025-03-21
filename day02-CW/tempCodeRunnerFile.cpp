@@ -1,0 +1,1 @@
+cout << endl << "Binary Search Count: " << count << endl;
