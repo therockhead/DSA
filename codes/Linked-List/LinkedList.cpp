@@ -86,10 +86,10 @@ void printLL(Node* head, int n)
 }
 void printLL_another_way(Node* head) // TRAVERSAL
 {
-    
+     
     Node* temp  = head;
 
-    while(temp)
+    while(temp!= NULL)
     {
         cout << temp->data << " ";
         temp = temp->next;
@@ -125,18 +125,27 @@ bool checkIfPresent(Node* head, int value)
     }
     return false;
 }
+Node* removeHead(Node* head)
+{
+    if(head == NULL) return head;
+    Node* temp = head;
+    head = head->next;
+    free(temp);
 
+    return head;
+}
 int main()
 {
 
     // vector<int> arr = {2, 5, 8, 9};
     
-    
+     
     // Node* head = convertArr2LL(arr, size); // head
 
     // cout << head->data << endl;
     
     int n;
+    cout << "How many you want to input? ";
     cin >> n; // n elements input
 
     Node* head = inputLL(n);
@@ -151,14 +160,22 @@ int main()
     cout << len << endl;
 
     int value; // the element I want to search
-    cout << "Which Value You want to check? ";
+    cout << "\nWhich Value You want to check? ";
     cin >> value;
     if(checkIfPresent(head, value))
     {
-        cout << "Yes" << endl;
+        cout << "Yes.. " << value <<" is available in the list" << endl;
     } else{
-        cout << "No" << endl;
+        cout << "No.. " << value << " is not available in the list" << endl;
     }
+
+    cout << endl;
+
+    head = removeHead(head);
+    cout <<"after removing the head, next head is: "<< head->data << endl;
+    cout << "and the linked list will be like this: ";
+    printLL_another_way(head);
+    cout <<endl << "-------------------------------"<<endl;
     return 0;
 }
 
