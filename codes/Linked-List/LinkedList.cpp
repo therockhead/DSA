@@ -134,6 +134,80 @@ Node* removeHead(Node* head)
 
     return head;
 }
+Node* removeTail(Node* head)
+{
+    if (head == NULL) return head;
+    if (head->next == NULL) return NULL; // only one element in the list
+    Node* temp = head;
+    while (temp->next->next != NULL) // last er age porjonto jabe
+    {
+        temp = temp->next;
+    }
+    delete temp->next; // last er next k delete korlam jeta mainly tail
+    temp->next = nullptr; // now making the second last one tail by assiging its next to null pointer :)
+    
+    return head;
+}
+Node* removeK(Node* head, int k) // for removing k-th element
+{
+    
+    if (head == NULL) return head;
+    if (k == 1){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+    // deleting k-th node means connecting (k-1)th node with (k+1)th node
+    // so we need to save the previous nodes.
+    // if (count == k), then we just change the prev->next to temp->next by  prev->next = prev->next->next; and delete the temp
+
+    Node* temp = head;
+    int count = 0; 
+    Node* prev = NULL; // to track previous node
+    while (temp != NULL){
+        count++;
+        if (count == k){
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        
+        prev = temp; // saving this to prev to use the previous node in every iteration
+        temp = temp->next; // moving forward
+    }
+
+    return head;
+}
+Node* removeElement(Node* head, int element) // for removing k-th element
+{
+    
+    if (head == NULL) return head;
+    if (head->data == element){
+        Node* temp = head;
+        head = head->next;
+        free(temp);
+        return head;
+    }
+    // deleting k-th node means connecting (k-1)th node with (k+1)th node
+    // so we need to save the previous nodes.
+    // if (count == k), then we just change the prev->next to temp->next by  prev->next = prev->next->next; and delete the temp
+
+    Node* temp = head;
+    Node* prev = NULL; // to track previous node
+    while (temp != NULL){
+        if (temp->data == element){
+            prev->next = prev->next->next;
+            free(temp);
+            break;
+        }
+        
+        prev = temp; // saving this to prev to use the previous node in every iteration
+        temp = temp->next; // moving forward
+    }
+
+    return head;
+}
 int main()
 {
 
@@ -144,38 +218,67 @@ int main()
 
     // cout << head->data << endl;
     
-    int n;
-    cout << "How many you want to input? ";
-    cin >> n; // n elements input
+    // int n;
+    // cout << "How many you want to input? ";
+    // cin >> n; // n elements input
 
+    // Node* head = inputLL(n);
+
+    // // cout << head-> data << endl;
+
+    // printLL(head, n);
+    // cout << endl;
+    // printLL_another_way(head);
+    // cout << endl << "Length: ";
+    // int len = lengthofLL(head);
+    // cout << len << endl;
+
+    // int value; // the element I want to search
+    // cout << "\nWhich Value You want to check? ";
+    // cin >> value;
+    // if(checkIfPresent(head, value))
+    // {
+    //     cout << "Yes.. " << value <<" is available in the list" << endl;
+    // } else{
+    //     cout << "No.. " << value << " is not available in the list" << endl;
+    // }
+
+    // cout << endl;
+
+    // head = removeHead(head);
+    // cout <<"after removing the head, next head is: "<< head->data << endl;
+    // cout << "and the linked list will be like this: ";
+    // printLL_another_way(head);
+    // cout <<endl << "-------------------------------"<<endl;
+
+    int n; 
+    cin >> n;
+    
     Node* head = inputLL(n);
-
-    // cout << head-> data << endl;
-
-    printLL(head, n);
-    cout << endl;
     printLL_another_way(head);
-    cout << endl << "Length: ";
-    int len = lengthofLL(head);
-    cout << len << endl;
-
-    int value; // the element I want to search
-    cout << "\nWhich Value You want to check? ";
-    cin >> value;
-    if(checkIfPresent(head, value))
-    {
-        cout << "Yes.. " << value <<" is available in the list" << endl;
-    } else{
-        cout << "No.. " << value << " is not available in the list" << endl;
-    }
-
-    cout << endl;
+    cout << "\n";
 
     head = removeHead(head);
-    cout <<"after removing the head, next head is: "<< head->data << endl;
-    cout << "and the linked list will be like this: ";
+    cout << "After removing the head, next head is: " << head->data << endl;
     printLL_another_way(head);
-    cout <<endl << "-------------------------------"<<endl;
+    cout << '\n';
+
+    // head = removeTail(head);
+    // printLL_another_way(head);
+
+    cout << "in which position you want to remove? "; 
+    int k; cin >> k;
+    head = removeK(head, k);
+    cout << '\n';
+    printLL_another_way(head);
+
+    cout << "Which element you want to delete? ";
+    int element; cin >> element;
+    head = removeElement(head, element);
+
+    printLL_another_way(head);
+
+
     return 0;
 }
 
