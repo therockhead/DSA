@@ -41,11 +41,6 @@ Node *convertArr2LL(int arr[], int size) // array or vector input
 
     return head;
 }
-Node* insertOneElement()
-{
-
-}
-
 Node *inputLL(int n) // array or vector input
 {
     Node *head;
@@ -208,6 +203,34 @@ Node* removeElement(Node* head, int element) // for removing k-th element
 
     return head;
 }
+Node* newHead(Node* head, int value) {
+    Node* temp = new Node(value, head); // new node
+    // here the next address of the temp Node* is the address of previous head
+    return temp;
+}
+Node* insertK(Node* head, int element, int k) { //--k-th position
+    if (head == NULL) {
+        if (k == 1) return new Node(element);
+        else return nullptr;
+    }
+    if (k == 1) {
+        Node* temp = new Node(element, head);
+        return temp;
+    }
+    int count = 0;
+    Node* temp = head;
+    while(temp!= NULL) {
+        count++;
+        if (count == k-1) {
+            Node* newNodeElement = new Node(element);
+            newNodeElement->next = temp->next;
+            temp->next = newNodeElement;
+            break;
+        }
+        temp = temp->next;
+    }
+    return head;
+}
 int main()
 {
 
@@ -251,33 +274,43 @@ int main()
     // printLL_another_way(head);
     // cout <<endl << "-------------------------------"<<endl;
 
-    int n; 
-    cin >> n;
+    // int n; 
+    // cin >> n;
     
-    Node* head = inputLL(n);
-    printLL_another_way(head);
-    cout << "\n";
+    // Node* head = inputLL(n);
+    // printLL_another_way(head);
+    // cout << "\n";
 
-    head = removeHead(head);
-    cout << "After removing the head, next head is: " << head->data << endl;
-    printLL_another_way(head);
-    cout << '\n';
+    // head = removeHead(head);
+    // cout << "After removing the head, next head is: " << head->data << endl;
+    // printLL_another_way(head);
+    // cout << '\n';
 
-    // head = removeTail(head);
+    // // head = removeTail(head);
+    // // printLL_another_way(head);
+
+    // cout << "in which position you want to remove? "; 
+    // int k; cin >> k;
+    // head = removeK(head, k);
+    // cout << '\n';
     // printLL_another_way(head);
 
-    cout << "in which position you want to remove? "; 
-    int k; cin >> k;
-    head = removeK(head, k);
+    // cout << "Which element you want to delete? ";
+    // int element; cin >> element;
+    // head = removeElement(head, element);
+
+    // printLL_another_way(head);
+
+    int n;
+    cin >> n;
+    Node* head = inputLL(n);
+    printLL_another_way(head);
+    cout << '\n';
+    head = newHead(head, 5);
+    printLL_another_way(head);
+    head = insertK(head, 6, 3);
     cout << '\n';
     printLL_another_way(head);
-
-    cout << "Which element you want to delete? ";
-    int element; cin >> element;
-    head = removeElement(head, element);
-
-    printLL_another_way(head);
-
 
     return 0;
 }
