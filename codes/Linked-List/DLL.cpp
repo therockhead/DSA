@@ -75,6 +75,7 @@ void printDLL(Node* head) {
     free(temp);
     cout << "\n"; // doesn't impact, only for print formatting
 }
+// deleting the head
 Node* deleteHead(Node* head) {
     if (head == NULL) { // dealing with edge cases
         cout << "Empty List";
@@ -91,7 +92,14 @@ Node* deleteHead(Node* head) {
     delete prev; // C++ doesn't automatically clear garbages like Java
     // So we have to manually delete it with delete keyword
     return head; // now returning new head actually
-
+}
+// deleting the tail func
+Node* deleteTail(Node* head) {
+    //Complete
+    /*
+    
+    */
+    return head;
 }
 int main() {
     int n; cin >> n;
