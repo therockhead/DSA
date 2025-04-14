@@ -24,8 +24,6 @@ using namespace std;
     Node* node2 = new Node(3, nullptr, node1); // as we can see,
     // here the back pointer is pointing towards node1
     node1->next = node2; // linking this node1
-
-
 */
 // basic custom DLL Definition
 struct Node{
@@ -97,7 +95,7 @@ Node* deleteHead(Node* head) {
 Node* deleteTail(Node* head) {
     //Complete
     /*
-    
+
     */
     return head;
 }
