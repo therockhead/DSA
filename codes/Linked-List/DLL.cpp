@@ -43,20 +43,60 @@ struct Node{
         this->back = nullptr;
     }
 };
-
-int main() {
-    Node* head = new Node(5);
-    Node* prev = head;
-    Node* node1 = new Node(2, nullptr, prev);
-    head->next = node1;
-    Node* node2 = new Node(3, nullptr, node1);
-    node1->next = node2;
-
+// input func
+Node* inputDLL(int n) {
+    Node* head;
+    Node* prev;
+    for (int i = 0; i < n; i++) {
+        int value;
+        cin >> value;
+        if (i == 0) {
+            head = new Node(value);
+            prev = head; 
+            // storing head's address in prev
+            // prev will be used by the next node as back pointer
+        } else {
+            Node* temp = new Node(value, nullptr, prev);
+            prev->next = temp; // linking with previous node
+            prev = temp; // updating the prev pointer with the address of temp
+            // thus, when we will create the next node,,
+            // the back pointer of that node will point to its previous node
+        }
+    }
+    return head;
+}
+// print func
+void printDLL(Node* head) {
     Node* temp = head;
     while (temp != NULL) {
         cout << temp->data << ' ';
-        temp = temp->next;
+        temp = temp->next; // moving forward in the LL
     }
+    free(temp);
+    cout << "\n"; // doesn't impact, only for print formatting
+}
+Node* deleteHead(Node* head) {
+    if (head == NULL) { // dealing with edge cases
+        cout << "Empty List";
+        return head;
+    }
+    Node* prev = head;
+    head = head->next; // next node of head will become new head
+    head->back = nullptr; // next node which is now the head can't remain linked with the previous head node
+    // so we are making the new head's back null pointer
+    prev->next = nullptr; // as we stored the previous head's address in prev
+    // in the previous line, we remove the backward link of new head and the previous head
+    // now we just remove the forward link between new and previous heads
+    // we have to do both as it is double linked list.
+    delete prev; // C++ doesn't automatically clear garbages like Java
+    // So we have to manually delete it with delete keyword
+    return head; // now returning new head actually
+
+}
+int main() {
+    int n; cin >> n;
+    Node* head = inputDLL(n);
+    printDLL(head); 
     return 0;
 
 }
