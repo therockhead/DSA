@@ -231,85 +231,40 @@ Node* insertK(Node* head, int element, int k) { //--k-th position
     }
     return head;
 }
+// USAGE: head = insertElementBeforeValue(head, 40, 3);
+// 40 getting inserted before value 3
+Node* insertElementBeforeValue (Node* head, int element, int value) {
+    if (head == NULL) {
+        return NULL;
+    }
+    if (head->data == value) {
+        Node* temp = new Node(element, head);
+        return temp;
+    }
+    bool found = false;
+    Node* temp = head;
+    while(temp->next != NULL) {
+        if (temp->next->data == value) {
+            Node* newNodeElement = new Node(element);
+            newNodeElement->next = temp->next;
+            temp->next = newNodeElement;
+            found = true;
+            break;
+        }
+        temp = temp->next;
+    }
+    if (found == false) {
+        cout << value << "Not Found\n";
+    } else {
+        cout << "SUCCESS. Found and Inserted\n";
+    }
+    return head;
+}
 int main()
 {
-
-    // vector<int> arr = {2, 5, 8, 9};
-    
-     
-    // Node* head = convertArr2LL(arr, size); // head
-
-    // cout << head->data << endl;
-    
-    // int n;
-    // cout << "How many you want to input? ";
-    // cin >> n; // n elements input
-
-    // Node* head = inputLL(n);
-
-    // // cout << head-> data << endl;
-
-    // printLL(head, n);
-    // cout << endl;
-    // printLL_another_way(head);
-    // cout << endl << "Length: ";
-    // int len = lengthofLL(head);
-    // cout << len << endl;
-
-    // int value; // the element I want to search
-    // cout << "\nWhich Value You want to check? ";
-    // cin >> value;
-    // if(checkIfPresent(head, value))
-    // {
-    //     cout << "Yes.. " << value <<" is available in the list" << endl;
-    // } else{
-    //     cout << "No.. " << value << " is not available in the list" << endl;
-    // }
-
-    // cout << endl;
-
-    // head = removeHead(head);
-    // cout <<"after removing the head, next head is: "<< head->data << endl;
-    // cout << "and the linked list will be like this: ";
-    // printLL_another_way(head);
-    // cout <<endl << "-------------------------------"<<endl;
-
-    // int n; 
-    // cin >> n;
-    
-    // Node* head = inputLL(n);
-    // printLL_another_way(head);
-    // cout << "\n";
-
-    // head = removeHead(head);
-    // cout << "After removing the head, next head is: " << head->data << endl;
-    // printLL_another_way(head);
-    // cout << '\n';
-
-    // // head = removeTail(head);
-    // // printLL_another_way(head);
-
-    // cout << "in which position you want to remove? "; 
-    // int k; cin >> k;
-    // head = removeK(head, k);
-    // cout << '\n';
-    // printLL_another_way(head);
-
-    // cout << "Which element you want to delete? ";
-    // int element; cin >> element;
-    // head = removeElement(head, element);
-
-    // printLL_another_way(head);
-
     int n;
     cin >> n;
-    Node* head = inputLL(n);
-    printLL_another_way(head);
-    cout << '\n';
-    head = newHead(head, 5);
-    printLL_another_way(head);
-    head = insertK(head, 6, 3);
-    cout << '\n';
+    Node* head = inputLL(n); // input part
     printLL_another_way(head);
 
     return 0;
