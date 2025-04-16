@@ -1,66 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
-class Stack {
-    int size;
-    char* arr;
-    int top;
-    public:
-        Stack() {
-            top = -1;
-            size = 1000;
-            arr = new char[size];
+bool isValid(string s) {
+        stack<char>paren;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
+            paren.push(s[i]);
+            } else {
+                if (paren.empty()) return false;
+                char ch = paren.top();
+                paren.pop();
+                if ((s[i] == ')' && ch == '(') || (s[i] == ']' && ch == '[') || (s[i] == '}' && ch == '{')) {
+                continue;
+                } else return false;
+            }
         }
-    void push(int x) {
-        top++;
-        arr[top] = x;
-    }
-    char pop() {
-        char x = arr[top];
-        top--;
-        return x;
-    }
-    char Top() {
-        return arr[top];
-    }
-    char Size() {
-        return top+1;
-    }
-    bool is_empty(Stack s) {
-        if (s.Size() == 0) {
-            return true;
-        }
-        else return false;
-    }
-
-};
+        if (paren.empty()) return true;
+        return false;
+}
 int main()
 {
 
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-
-    string s;
-    Stack paren;
-    cin >> s;
-    for (int i = 0; i < s.size(); i++) {
-        if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
-            paren.push(s[i]);
-        }
-        else {
-            char ch = paren.Top();
-            if (s[i] == ')' && ch == '(') {
-                paren.pop();
-            }
-            if (s[i] == ']' && ch == '[') {
-                paren.pop();
-            }
-            if (s[i] == '}' && ch == '{') {
-                paren.pop();
-            }
-
-        }
-    }
-    cout << paren.is_empty(paren);
+    string s; cin >> s;
+    if(isValid(s)) cout << "Yes\n";
+    else cout << "No\n";
     return 0;
 }
 
