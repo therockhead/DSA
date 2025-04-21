@@ -29,8 +29,8 @@ using namespace std;
 struct Node
 {
     int data;
-    Node *next;
-    Node *back;
+    Node* next;
+    Node* back;
     Node(int data, Node *next, Node *back)
     {
         this->data = data;
@@ -74,26 +74,24 @@ Node *inputDLL(int n)
 // print func
 void printDLL(Node *head)
 {
-    Node *temp = head;
-    while (temp != NULL)
+    while (head != NULL)
     {
-        cout << temp->data << ' ';
-        temp = temp->next; // moving forward in the LL
+        cout << head->data << ' ';
+        head = head->next; // moving forward in the LL
     }
-    free(temp);
     cout << "\n"; // doesn't impact, only for print formatting
 }
 // deleting the head
 Node *deleteHead(Node *head)
 {
-    if (head == NULL)
+    if (head == nullptr)
     { // dealing with edge cases
         cout << "Empty List";
-        return head; // or return NULL;
+        return nullptr; // or return NULL;
     }
-    if (head->next == NULL)
+    if (head->next == nullptr)
     { // when there is only one element
-        return NULL;
+        return nullptr;
     }
     Node *prev = head;
     head = head->next;    // next node of head will become new head
@@ -103,7 +101,6 @@ Node *deleteHead(Node *head)
     // in the previous line, we remove the backward link of new head and the previous head
     // now we just remove the forward link between new and previous heads
     // we have to do both as it is double linked list.
-    delete prev; // C++ doesn't automatically clear garbages like Java
     // So we have to manually delete it with delete keyword
     return head; // now returning new head actually
 }
@@ -140,12 +137,12 @@ Node *deleteTail(Node *head)
 }
 
 // To delete element from position k (1,2,3,,,,,size of linkedlist)
-Node* deleteK(Node *head, int k)
+Node* deleteKth(Node *head, int k)
 {
     // need a temp pointer of type Node (Node* temp)
     // while loop needed until (temp != null)
     // count everytime until count = k+1, means stop counting on value k
-    if (head = NULL) {
+    if (head == NULL) {
         return NULL;
     }
     Node* kNode = head;
@@ -153,8 +150,7 @@ Node* deleteK(Node *head, int k)
     while (kNode != NULL)
     {
         count++;
-        if (count == k)
-            break;
+        if (count == k) break;
         kNode = kNode->next;
     }
     Node *prev = kNode->back;
@@ -167,11 +163,10 @@ Node* deleteK(Node *head, int k)
     { // it means it's the head, but not one element like previous condition
         return deleteHead(head);
     }
-    else if (front = NULL)
+    else if (front == NULL)
     { // if it the tail
         return deleteTail(head);
     }
-
     // linking the (k-1)th element with (k+1)th element
     // prev pointer denotes (k-1)th element
     // front pointer denotes (k+1)th element
@@ -180,7 +175,6 @@ Node* deleteK(Node *head, int k)
     kNode->next = nullptr;
     kNode->back = nullptr;
     delete kNode;
-
     return head;
 }
 int main()
@@ -188,7 +182,7 @@ int main()
     int n;
     cin >> n;
     Node *head = inputDLL(n);
-    head = deleteK(head, 3);
+    head = deleteKth(head, 3);
     printDLL(head);
     return 0;
 }
