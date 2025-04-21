@@ -135,7 +135,6 @@ Node *deleteTail(Node *head)
     delete tail; // delete the tail
     return head;
 }
-
 // To delete element from position k (1,2,3,,,,,size of linkedlist)
 Node* deleteKth(Node *head, int k)
 {
@@ -177,12 +176,32 @@ Node* deleteKth(Node *head, int k)
     delete kNode;
     return head;
 }
+void deleteNode(Node* temp) {
+    Node* prev = temp->back;
+    Node* front = temp->next;
+    if (front == NULL) {
+        prev->next = nullptr;
+        temp->back = nullptr;
+        free(temp);
+        return;
+    }
+    prev->next = front; // front or temp->next
+    front->back = prev;
+    // making temp node vanish by unlinking
+    temp->back = nullptr;
+    temp->next = nullptr;
+    free(temp);
+}
+Node* insertBeforeHead(Node* head, int data) {
+    Node* newNode = new Node(data, head, nullptr);
+    head->back = newNode;
+    return newNode;
+}
 int main()
 {
     int n;
     cin >> n;
     Node *head = inputDLL(n);
-    head = deleteKth(head, 3);
     printDLL(head);
     return 0;
 }
