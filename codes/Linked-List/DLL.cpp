@@ -197,11 +197,26 @@ Node* insertBeforeHead(Node* head, int data) {
     head->back = newNode;
     return newNode;
 }
+Node* insertBeforeTail(Node* head, int data) {
+    if (head->next == NULL) { // if one element
+        return insertBeforeHead(head, data);
+    }
+    Node* tail = head;
+    while(tail->next != nullptr) {
+        tail = tail->next;
+    }
+    Node* prev = tail->back;
+    Node* newNode = new Node(data, tail, prev);
+    prev->next = newNode;
+    tail->back = newNode;
+    return head;
+}
 int main()
 {
     int n;
     cin >> n;
     Node *head = inputDLL(n);
+    head = insertBeforeTail(head, 10);
     printDLL(head);
     return 0;
 }
