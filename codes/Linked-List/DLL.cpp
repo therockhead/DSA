@@ -211,12 +211,37 @@ Node* insertBeforeTail(Node* head, int data) {
     tail->back = newNode;
     return head;
 }
+Node* insertBeforeKth(Node* head, int k, int data) {
+    if (k == 1) {
+        return insertBeforeHead(head, data);
+    }
+    Node* temp = head;
+    int cnt = 0;
+    while(temp != NULL) {
+        cnt++;
+        if (cnt == k) break;
+        temp = temp->next;
+    }
+    Node* prev = temp->back;
+    Node* newNode = new Node(data, temp, prev);
+    
+    prev->next = newNode;
+    temp->back = newNode;
+    return head;
+}
+void insertBeforeANode(Node* temp, int data) {
+    // temp is given node
+    Node* prev = temp->back;
+    Node* newNode = new Node(data, temp, prev);
+    prev->next = newNode;
+    temp->back = newNode;
+    return;
+}
 int main()
 {
     int n;
     cin >> n;
     Node *head = inputDLL(n);
-    head = insertBeforeTail(head, 10);
     printDLL(head);
     return 0;
 }
