@@ -2,9 +2,9 @@
 using namespace std;
 int main()
 {
-    // n represents number of nodes 
+    // n represents number of nodes
     // m represents number of edges
-    int n, m; 
+    int n, m;
     cin >> n >> m;
 
     // vector<char>adj[n+1];
@@ -17,34 +17,42 @@ int main()
     // }
     // for (int i = 0; i < m; i++) {
     //     for (auto it: adj[i]) {
-    //         cout << it << ' ';  
+    //         cout << it << ' ';
     //     }
     //     cout << '\n';
     // }
 
     int adj[m][m];
-    for(int i = 0; i < m; i++) {
-        for (int j = 0; j < m; j++) {
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
             adj[i][j] = 0;
         }
     }
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < m; i++)
+    {
         char u, v;
         cin >> u >> v;
-        adj[u-'A'][v- 'A'] += 1;
-        adj[v-'A'][u-'A'] += 1;
+        adj[u - 'A'][v - 'A'] += 1;
+        adj[v - 'A'][u - 'A'] += 1;
     }
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < m; j++) {
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
             cout << adj[i][j] << ' ';
         }
         cout << '\n';
     }
-    vector<int>degrees;
-    for (int i = 0; i < m; i++) {
+    vector<int> degrees;
+    for (int i = 0; i < m; i++)
+    {
         int count = 0;
-        for (int j = 0; j < m; j++) {
-            if (adj[i][j] > 0) {
+        for (int j = 0; j < m; j++)
+        {
+            if (adj[i][j] > 0)
+            {
                 count++;
             }
         }
@@ -52,10 +60,12 @@ int main()
     }
     int maximum = 0;
     char hDegreeNode;
-    for (int i = 0; i < n; i ++) {
+    for (int i = 0; i < n; i++)
+    {
         char ch = 'A' + i;
         cout << "Degree of " << ch << ": " << degrees[i] << '\n';
-        if (degrees[i] > maximum) {
+        if (degrees[i] > maximum)
+        {
             maximum = degrees[i];
             hDegreeNode = ch; // storing highest degree wala node
         }
@@ -68,17 +78,62 @@ int main()
     char first, second;
     cout << "Give two verteces/nodes to check if there remains any edge in between: ";
     cin >> first >> second;
-    for (int i = 0; i < m; i++) {
-        for (int j = 0; j < m; j++) {
-            if (first-'A' == i && second-'A' == j) {
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (first - 'A' == i && second - 'A' == j)
+            {
                 cout << "No. of Edges Between: " << adj[i][j] << '\n';
-                if (adj[i][j] > 0) {
+                if (adj[i][j] > 0)
+                {
                     cout << "Yes. There is a connection between " << first << " & " << second << endl;
                 }
-                else {
+                else
+                {
                     cout << "No connection left" << endl;
                 }
             }
         }
+    }
+
+    // adjacent nodes
+    cout << "Adjacent Node Of: ";
+    char ch;
+    cin >> ch;
+    cout << "Adjacent Nodes Of " << ch << " are: ";
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (ch == (i + 'A'))
+            {
+
+                if (adj[i][j] > 0)
+                {
+                    cout << char(j + 'A') << ' ';
+                }
+            }
+        }
+        
+    } cout << '\n';
+
+    // check if any loop exists or not
+    bool loop = false;
+    for (int i = 0; i < m; i++)
+    {
+        if (adj[i][i] > 0)
+        {
+            loop = true;
+            break;
+        }
+    }
+    if (loop)
+    {
+        cout << "Loop Exists" << endl;
+    }
+    else
+    {
+        cout << "No Loop Exists" << endl;
     }
 }
