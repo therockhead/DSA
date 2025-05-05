@@ -21,7 +21,21 @@ int main()
 
     return 0;
 }
-
+void stackUse() {
+    int n; cin >> n;
+    stack<int>st;
+    for (int i = 0; i < n; i++) {
+        int value;
+        cin >> value;
+        st.push(value);
+    }
+    cout <<"Top of the stack: " << st.top() << endl;
+    if (st.empty()) cout << "The stack is empty\n";
+    else cout << "The stack isn't empty\n";
+    cout << "The size of stack is " << st.size() << endl; 
+    cout << "Popping the top using pop(): "; st.pop();
+    cout << "After popping once size reduced by 1: " << st.size() << endl;
+}
 void vectorCheat()
 {
     vector<pair<int, int>>vec;
