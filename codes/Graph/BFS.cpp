@@ -36,7 +36,7 @@ vector<int> bfs(vector<vector<int>> &adj) {
         }
 
     }
-
+    
     return traversal; // returning a vector
 
 }
