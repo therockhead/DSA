@@ -1,64 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> dfs(unordered_map<int, vector<int>> &adj, int start) {
-    int len = adj.size();
-    vector<int>traversal;
-    stack<int>st;
-    vector<bool>visited(len, false); // track rakhtesi visited gula
-    
-    visited[start] = true;
-    st.push(start);
+void dfs(int node, vector<bool> &visited, vector<vector<int>> &adj, vector<int> &component) {
+    component.push_back(node);
+    visited[node] = true;
 
-    while (!st.empty()) {
-        int curr = st.top();
-        st.pop();
-        traversal.push_back(curr);
-
-        for (auto it: adj[curr]) {
-            if (!visited[curr]) {
-                visited[curr] = true;
-                st.push(it);
-            }
-            else {
-                dfs(adj, );
-            }
+    for (auto i : adj[node]) {
+        if (!visited[i]) {
+            dfs(i, visited, adj, component);
         }
     }
-    // for (auto i: traversal) cout << i << ' ';
-    return traversal;
 }
 
-void printAdj(unordered_map<int, vector<int>> &adj) {
-    int len = adj.size();
-    for (auto i: adj) {
-        cout << i.first << " -> ";
-        for (auto it: i.second) {
-            cout << it << ' ';
-        }
-        cout << endl;
-    }
-}
-int main() {
-    int n, m; // number of nodes and edges
-    cin >> n >> m;
-    unordered_map<int, vector<int>> adj;
-    for (int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
+vector<vector<int>> depthFirstSearch(int V, int E, vector<vector<int>> &edges) {
+    // Adjacency List Preparation
+    vector<vector<int>> adj(V); // Use a vector of vectors for adjacency list
+    for (int i = 0; i < edges.size(); i++) {
+        int u = edges[i][0];
+        int v = edges[i][1];
+
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
-    
-    printAdj(adj);
 
-    cout << "Enter the start node: "<< endl;
-    int start; cin >> start;
-    vector<int> res = dfs(adj, start);
-    cout << "DFS traversal" << endl;
-    
-    for (auto it: res) {
-        cout << it << " ";
+    vector<vector<int>> ans;
+    vector<bool> visited(V, false); // Use a vector for visited nodes
+
+    for (int i = 0; i < V; i++) {
+        if (!visited[i]) {
+            vector<int> component;
+            dfs(i, visited, adj, component);
+            ans.push_back(component);
+        }
+    }
+    return ans;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int V, E;
+    cin >> V >> E; // number of vertices and edges
+    vector<vector<int>> edges(E, vector<int>(2));
+    for (int i = 0; i < E; i++) {
+        int u, v;
+        cin >> u >> v;
+        edges[i][0] = u;
+        edges[i][1] = v;
     }
 
+    vector<vector<int>> v = depthFirstSearch(V, E, edges);
+    for (auto i : v) {
+        for (auto j : i) {
+            cout << j << ' ';
+        }
+        cout << endl;
+    }
+    return 0;
 }
