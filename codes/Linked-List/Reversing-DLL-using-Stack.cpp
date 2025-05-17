@@ -1,4 +1,13 @@
 // NOT VERY EFFICIENT
+// Uses Stack to implement
+// TC O(2N) // two while loops
+// SC O(N)
+/*
+    Space Complexity Breakdown:
+    * Each push(node) operation stores a reference to a node in the stack.
+    * If there are N nodes in the linked list, you push N references onto the stack.
+    * Thus, the stack holds N elements → O(N) extra space.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 class Node
