@@ -46,7 +46,7 @@ int main() {
 		adj[v].push_back(u);
 	}
 	
-	bfs(6, 6, adj, visited, bfsPath);
+	bfs(0, n, adj, visited, bfsPath);
 	
 	cout << "BFS path: ";
 	for (auto node: bfsPath) {
