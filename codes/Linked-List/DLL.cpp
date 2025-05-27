@@ -195,6 +195,7 @@ void deleteNode(Node* temp) {
 Node* insertBeforeHead(Node* head, int data) {
     Node* newNode = new Node(data, head, nullptr);
     head->back = newNode;
+    newNode->next = head;
     return newNode;
 }
 Node* insertBeforeTail(Node* head, int data) {
