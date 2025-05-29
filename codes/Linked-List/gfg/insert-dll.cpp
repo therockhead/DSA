@@ -137,22 +137,43 @@ Node* insertBeforeSpecificPosition(Node* head, int pos, int data) {
             break;
         }
         cnt++;
-        curr = curr->next;
+        curr = curr->next; // iterating
     }
-    if (curr == NULL) {
+    if (curr == NULL) { // if curr reaches at the tail->next
+        // while loop stops
+        // that means the position is out of bound;
         cout << "Position out of bounds.\n";
         delete new_node;
         return head;
+        // stops
     }
     new_node->next = curr->next;
     curr->next = new_node;
     new_node->prev = curr;
 
-    if (new_node->next != NULL) {
-        new_node->next->prev = new_node;
+    if (new_node->next != NULL) { // if the next node of new node is not NULL
+        new_node->next->prev = new_node; // then the prev of next node of new_node will be new_node
     }
     return head;
 }
+Node* insertTail(Node* head, int data) {
+    Node* new_node = new Node(data);
+
+    
+    if (head == NULL) head = new_node; // if the linked list is empty
+    else {
+        Node* curr = head;
+        while(curr->next != NULL) {
+            curr = curr->next;
+        }
+        curr->next = new_node;
+        new_node->prev = curr;
+        new_node->next = NULL;
+    }
+    
+    return head;
+}
+
 int main() {
     int n;
     cin >> n;
@@ -161,5 +182,9 @@ int main() {
     cout << "end\n"; 
     head = insertBeforeSpecificPosition(head, 3, -1); // add -1 before 3
     printDLLforward(head);
+    cout << "end\n";
+    head = insertTail(head, 100);
+    printDLLforward(head);
+    cout << "end\n";
     return 0;
 }
