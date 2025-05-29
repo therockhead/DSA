@@ -53,6 +53,7 @@ void printDLLforward(Node *head)
     printDLLforward(head->next);
 }
 
+
 /*insertion in a double linked list*/
 
 // insert new head
@@ -170,7 +171,7 @@ Node* insertTail(Node* head, int data) {
         new_node->prev = curr;
         new_node->next = NULL;
     }
-    
+
     return head;
 }
 
