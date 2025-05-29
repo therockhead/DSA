@@ -81,19 +81,7 @@ void backwardTraversal(Node *tail)
         curr = curr->prev;
     }
 }
-// insert new head
-// time complexity O(1), Space Complexity O(1)
-Node *insertHead(Node *head, int val)
-{
-    Node *newNode = new Node(val);
-    newNode->prev = nullptr;
-    newNode->next = head;
-    if (head != NULL)
-    {
-        head->prev = newNode;
-    }
-    return newNode;
-}
+
 int main()
 {
     int n;
