@@ -107,13 +107,59 @@ Node* insertBeforeK(Node* head, int k, int data) {
 
     return head;
 }
+Node* insertBeforeSpecificPosition(Node* head, int pos, int data) {
+    // creating node with new data
+    Node* new_node = new Node(data);
+
+    // if the position is 1, then
+    // it means the new_node is the new_head;
+    if (pos == 1) {
+        new_node->next = head;
+        // if head is not null, then 
+        // it's prev should point to the new_node (new_head)
+        // otherwise it only stays NULL
+        if (head != NULL) {
+            head->prev = new_node;
+        }
+        // head will be replaced with new_node
+        head = new_node;
+        return head; 
+        // or we can easily return new_node only
+    }
+    // now, if the pos in not 1
+    Node* curr = head;
+    int cnt = 0;
+    while (curr != NULL) {
+        if (cnt == pos-2) { // indexes: 0, 1, 2, 3
+            // if the pos is 3, it means index 2
+            // then curr should stop at index 1
+            // then break
+            break;
+        }
+        cnt++;
+        curr = curr->next;
+    }
+    if (curr == NULL) {
+        cout << "Position out of bounds.\n";
+        delete new_node;
+        return head;
+    }
+    new_node->next = curr->next;
+    curr->next = new_node;
+    new_node->prev = curr;
+
+    if (new_node->next != NULL) {
+        new_node->next->prev = new_node;
+    }
+    return head;
+}
 int main() {
     int n;
     cin >> n;
     Node* head = inputdll(n);
     printDLLforward(head);
     cout << "end\n"; 
-    head = insertBeforeK(head, 3, -1); // add -1 before 3
+    head = insertBeforeSpecificPosition(head, 3, -1); // add -1 before 3
     printDLLforward(head);
     return 0;
 }
