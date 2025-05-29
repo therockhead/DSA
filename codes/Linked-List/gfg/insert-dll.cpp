@@ -108,6 +108,12 @@ Node* insertBeforeK(Node* head, int k, int data) {
     return head;
 }
 int main() {
-
-
+    int n;
+    cin >> n;
+    Node* head = inputdll(n);
+    printDLLforward(head);
+    cout << "end\n"; 
+    head = insertBeforeK(head, 3, -1); // add -1 before 3
+    printDLLforward(head);
+    return 0;
 }
