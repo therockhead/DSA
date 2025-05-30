@@ -2,5 +2,9 @@
     "files.associations": {
         "iostream": "cpp"
     },
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "editor.cursorWidth": 5,
+    "editor.cursorStyle": "block",
+    "editor.fontFamily": "\"JetBrains Mono\"",
+    "editor.fontSize": 16
 }
