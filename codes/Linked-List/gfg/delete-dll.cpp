@@ -157,6 +157,80 @@ Node* deleteBefore(Node* head, int key) {
     return head;
 }
 
+// delete at a specific position
+// a position parameter needed instead of key
+Node* deleteSpecificNode(Node* head, int pos) { 
+    if (head == nullptr) {
+        return head;
+    }
+    Node* curr = head;
+
+    // traverse
+    for (int i = 1; curr != nullptr && i < pos; i++) {
+        curr = curr->next;
+    }
+
+    // if the position is out of range
+    if (curr == nullptr) {
+        return head;
+    }
+
+    // update the previous node's next pointer
+    if (curr->prev != nullptr) {
+        curr->prev->next = curr->next;
+    }
+
+    // update the next node's prev pointer
+    if (curr->next != nullptr) {
+        curr->next->prev = curr->prev;
+    }
+
+    // if the node to be deleted is the head itself
+    if (head == curr) {
+        head  = curr->next;
+    }
+
+    // deallocate memory for the deleted node
+    delete curr;
+    return head;
+}
+
+// delete the tail of the dll
+Node* deleteTail(Node* head) {
+   
+    // 2 things can happen,
+    // there is no head and no existence of the list
+    // another one is the head itself is the tail (one element in the list)
+    // in both cases, we will return nullptr
+    // if 1 element, why return null?
+    //---- it's because we are deleting it and ultimately we have 0 element
+    //---- which will be returned
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+
+    // initialize curr with head node
+    Node* curr = head;
+    while (curr->next != nullptr) {
+        curr = curr->next;
+    }
+
+    // saving the tail in nodeDelete node
+    Node* nodeDelete = curr;
+    
+    // if the prev is not null, then only the prev's next should point to null
+    // as the prev of tail will be the new tail
+    if(nodeDelete->prev != nullptr){
+        nodeDelete->prev->next = nullptr;
+    }
+    
+    // free up the memory
+    delete nodeDelete;
+
+    // returns the head as it's the return type
+    return head;
+}
+// main function
 int main () {
     int n;
     cin >> n;
