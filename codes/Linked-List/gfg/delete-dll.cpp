@@ -136,9 +136,9 @@ Node* deleteBefore(Node* head, int key) {
 
     // Otherwise
     // Node to be deleted
-    Node* nodeDelete = curr->prev;
     // the previous of curr means the node before curr
-
+    Node* nodeDelete = curr->prev;
+    
     // update the prev of the curr node
     // to the prev  of the node to be deleted
     curr->prev = nodeDelete->prev;
@@ -152,6 +152,7 @@ Node* deleteBefore(Node* head, int key) {
         head = curr;
     }
 
+    // free the memory space for nodeDelete
     delete nodeDelete;
     return head;
 }
