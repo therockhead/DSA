@@ -23,3 +23,15 @@ using namespace std;
 
     usage: Node<int>* newNode = new Node<int>(5);
 */
+
+// Normal design of a node
+// with integer
+class Node {
+    int data;
+    Node* next;
+
+    Node(int data) {
+        this->data = data;
+        next = nullptr;
+    }
+};
