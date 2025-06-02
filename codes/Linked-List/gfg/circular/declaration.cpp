@@ -35,3 +35,32 @@ class Node {
         next = nullptr;
     }
 };
+
+Node* input(int n) 
+{
+    Node *head;
+
+    for (int i = 0; i < n; i++)
+    {
+        int val;
+        cin >> val;
+        Node *mover;
+        if (i == 0)
+        {
+             head = new Node(val);
+             mover = head;
+        }
+        else
+        {
+            Node *temp = new Node(val); 
+            mover->next = temp;
+            mover = temp;                 
+        }
+    }
+    return head;
+}
+int main () {
+    int n;
+    cout << "Number of Nodes: ";
+    cin >> n;
+}
