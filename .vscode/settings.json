@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "chrono": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "editor.cursorWidth": 5,

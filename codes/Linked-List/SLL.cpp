@@ -3,6 +3,23 @@
 
 using namespace std;
 
+/* If we want to create for other data type as well
+
+    template <typename T>
+    class Node {
+    public:
+        T data;
+        Node<T>* next;
+
+        Node(T value) {
+            data = value;
+            next = nullptr;
+        }
+    };
+
+    usage: Node<int>* newNode = new Node<int>(5);
+*/
+
 class Node
 {
 public:
