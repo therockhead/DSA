@@ -60,6 +60,10 @@ Node *convertArr2LL(int arr[], int size) // array or vector input
 }
 Node *inputLL(int n) // array or vector input
 {
+    if (n == 0) { // if there is no element in the list
+        return nullptr;
+    }
+
     Node *head;
 
     for (int i = 0; i < n; i++)

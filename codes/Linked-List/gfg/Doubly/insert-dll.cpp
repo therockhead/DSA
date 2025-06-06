@@ -23,6 +23,10 @@ public:
 // input
 Node *inputdll(int n)
 {
+    if (n == 0) {
+        return nullptr;
+    }
+    
     Node *head;
     Node *prev;
     

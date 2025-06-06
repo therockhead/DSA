@@ -47,6 +47,10 @@ struct Node
 // input func
 Node *inputDLL(int n)
 {
+    if (n == 0) {
+        return nullptr;
+    }
+    
     Node *head;
     Node *prev;
     for (int i = 0; i < n; i++)
