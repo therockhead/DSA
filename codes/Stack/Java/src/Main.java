@@ -2,27 +2,29 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception{
-        int n;
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
 
-        customStack stack = new customStack(n);
+        CircularQueue queue = new CircularQueue(5);
 
-        stack.push(10);
-        stack.push(20);
-        stack.push(30);
-        stack.push(40);
-        stack.push(50);
-        stack.push(60);
+        queue.insert(10);
+        queue.insert(20);
+        queue.insert(30);
+        queue.insert(40);
+        queue.insert(50);
 
+        queue.display();
 
-        System.out.println(stack.peek());
-        stack.pop();
-        System.out.println(stack.peek());
-        stack.pop();
-        System.out.println(stack.peek());
-        stack.pop();
-        System.out.println(stack.peek());
+        System.out.println(queue.remove());
+
+        queue.display();
+
+        System.out.println(queue.remove());
+        queue.display();
+
+        queue.insert(60);
+        queue.insert(70);
+        queue.insert(80);
+        queue.insert(90);
+        queue.display();
 
     }
 }
