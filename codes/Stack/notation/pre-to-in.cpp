@@ -30,7 +30,7 @@ string PreToInfix(string s) {
     return st.top();
 }
 int main() {
-    string pre = "*+PQ-MN"; // ans would be as ((A-B)/((D+E)*F))
+    string pre = "*+PQ-MN"; // ans would be as ((P+Q)*(M-N))
     string infix = PreToInfix(pre);
     cout << infix << '\n';
     
