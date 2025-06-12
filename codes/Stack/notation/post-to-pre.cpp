@@ -31,7 +31,7 @@ string PostToPre(string s) {
     return st.top();
 }
 int main() {
-    string post = "AB-DE+F*/"; // ans would be as ((A-B)/((D+E)*F))
+    string post = "AB-DE+F*/"; // ans would be as "/-AB*+DEF"
     string prefix = PostToPre(post);
     cout << prefix << '\n';
     
