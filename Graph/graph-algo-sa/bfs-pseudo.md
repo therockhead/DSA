@@ -9,7 +9,7 @@ procedure BFS(G, source):
         for all edges from u to v in G.adjacentEdges(u)
             do
                 if level[v] = infinity:
-                    level[u] <- level[v] + 1;
+                    level[v] <- level[u] + 1;
                     Q.enqueue(v)
                 end if
         end for
