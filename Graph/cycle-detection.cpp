@@ -3,6 +3,8 @@
     and end up getting at a common point
 */
 
+// Time Complexity O(N+ 2E) // 2E because it is undirected
+// Space Complexity O(N) for using Queue
 #include <bits/stdc++.h>
 using namespace std;
 
