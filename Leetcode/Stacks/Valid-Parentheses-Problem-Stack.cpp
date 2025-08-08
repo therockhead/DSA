@@ -1,16 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
-bool isValid(string s) {
+bool isValid(string &s) {
         stack<char>paren;
         for (int i = 0; i < s.size(); i++) {
             if (s[i] == '(' || s[i] == '[' || s[i] == '{') {
-            paren.push(s[i]);
+                paren.push(s[i]);
             } else {
                 if (paren.empty()) return false;
                 char ch = paren.top();
                 paren.pop();
                 if ((s[i] == ')' && ch == '(') || (s[i] == ']' && ch == '[') || (s[i] == '}' && ch == '{')) {
-                continue;
+                    continue;
                 } else return false;
             }
         }

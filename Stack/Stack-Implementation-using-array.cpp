@@ -34,7 +34,7 @@ class Stack {
         }
     }
     int Top() {
-        if (top > 0 && top < size) {
+        if (top >= 0 && top < size) {
             return arr[top];
         }
         else {
