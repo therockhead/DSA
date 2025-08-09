@@ -1,3 +1,6 @@
+## BFS pseudocode
+
+```
 procedure BFS(G, source):
     Q <- queue(), level[] <- infinity
     Q.enqueue(source)
@@ -17,3 +20,4 @@ procedure BFS(G, source):
     end while
 
     return distance
+```
